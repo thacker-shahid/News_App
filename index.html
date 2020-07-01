@@ -26,6 +26,10 @@
       color: white;
       text-align: center;
     }
+   body {
+      font-family: 'Ubuntu', sans-serif;
+      margin-bottom: 50px;
+    }
 
     i {
       color: white;
@@ -36,16 +40,48 @@
     section {
       height: 100vh;
     }
+    
+      /* ------------------------------- To Up Arrow ---------------------------------------- */
+      /* ----------------------------------------------------------------------------------- */
+      .to-top{
+        /* z-index: 9999999999999; */
+        background: #1e9ebe;;
+        position: fixed;
+        bottom: 16px;
+        right: 32px;
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 32px;
+        text-decoration: none;
+        opacity: 0;
+        pointer-events: none;
+        transition: all .4s;
+        /* border: 1px solid black; */
+      }
+      .to-top.active{
+        bottom: 32px;
+        pointer-events: auto;
+        opacity: 1;
+      }
 
-    body {
-      font-family: 'Ubuntu', sans-serif;
-    }
   </style>
 </head>
+  
+<body onload="myFunc()">
 
-<body>
+<div class="loader_bg">
+<div class="loader"></div>
+</div>
 
+<a href="#" class="to-top">
+<i class="fa fa-chevron-up"></i>
+</a>
 
+  
   <!-- ===================navbaar======================= -->
   <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
     <a class="navbar-brand" href="#">Welcome to News App</a>
@@ -70,16 +106,13 @@
   <h1 class="text-center">Welcome to My news Application</h1>
   <hr>
   <br><br>
-  <button class="btn" id="click">click here</button>
+  <button class="btn text-center" id="click">click here</button>
 
   <!-- =================== collapsable news ================== -->
 
 
   <section>
     <div class="accordion" id="newsAccordion">
-
-      
-
     </div>
   </section>
 
@@ -178,6 +211,25 @@ function addNews() {
     //   console.log(err);
     // });
 } 
+
+              function myFunc() {
+          let value = document.querySelector('.loader_bg');
+          value.style.display = 'none';
+          }
+
+          let toTop = document.querySelector('.to-top');
+          console.log('done 1');
+          window.addEventListener("scroll", () => {
+          console.log('done 2');
+          if (window.pageYOffset > 100) {
+          console.log('done 3');
+          toTop.classList.add("active");
+          } else {
+          console.log('done 4');
+          toTop.classList.remove("active");
+          }
+          });
+
   
   </script>
 
